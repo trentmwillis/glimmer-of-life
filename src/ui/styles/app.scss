@@ -1,3 +1,20 @@
 h1 {
   color: #444;
 }
+
+.glimmer-world {
+  border-spacing: 0;
+}
+
+.glimmer-citizen {
+  width: 4px;
+  height: 4px;
+}
+
+.glimmer-citizen.alive {
+  background-color: green;
+}
+
+.glimmer-citizen.dead {
+  background-color: red;
+}
