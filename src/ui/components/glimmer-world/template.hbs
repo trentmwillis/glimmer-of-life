@@ -2,7 +2,7 @@
   {{#each @citizens key="@index" as |row|}}
     <tr class="glimmer-world__row">
       {{#each row key="@index" as |citizen|}}
-        <glimmer-citizen @citizen={{citizen}} />
+        <glimmer-citizen @alive={{citizen.alive}} />
       {{/each}}
     </tr>
   {{/each}}
