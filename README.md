@@ -2,11 +2,7 @@
 
 **Note: This is a work in progress.**
 
-An implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) using [Glimmer](https://glimmerjs.com/). Meant primarily as an exploration of building beautiful and performant visualization with Glimmer.
-
-## Notes from Development
-
-Tracking changes at a "chunky" level produces poor performance characteristics. In particular, treating entire generations (or "worlds" as implemented here) as immutable and replacing them with each "tick" leads to frequent busting of the frame rate.
+An implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) using [Glimmer](https://glimmerjs.com/). Meant primarily as an exploration of building performant visualizations with many components in Glimmer.
 
 ## Prerequisites
 
@@ -19,14 +15,14 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/trentmwillis/glimmer-of-life`
 * `cd glimmer-of-life`
 * `yarn`
 
 ## Running / Development
 
 * `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+* Visit the app at [http://localhost:4200](http://localhost:4200).
 
 ### Building
 
