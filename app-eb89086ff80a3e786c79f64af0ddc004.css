@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0; }
+
+.glimmer-world {
+  border-spacing: 1; }
+
+.glimmer-citizen {
+  width: 2px;
+  height: 2px; }
+
+.glimmer-citizen.alive {
+  background-color: #00dbde; }
+
+.glimmer-citizen.dead {
+  background-color: transparent; }
