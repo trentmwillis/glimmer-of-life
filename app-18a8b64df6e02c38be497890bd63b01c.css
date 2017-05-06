@@ -5,6 +5,18 @@ body {
   height: 100vh;
   margin: 0; }
 
+.title {
+  color: #444;
+  font-family: sans-serif;
+  font-size: 100%;
+  text-align: center; }
+
+.title > a {
+  color: #00dbde;
+  text-decoration: none; }
+  .title > a:hover, .title > a:focus {
+    text-decoration: underline; }
+
 .glimmer-world {
   border-spacing: 1; }
 
