@@ -22,7 +22,7 @@ export default class World {
         this.citizens[i] = new Array(size);
 
         for (let j = 0; j < size; j++) {
-          let alive = Math.random() < 0.5 ? true : false;
+          let alive = Math.random() < 0.2 ? true : false;
           this.citizens[i][j] = new Citizen(alive);
         }
       }

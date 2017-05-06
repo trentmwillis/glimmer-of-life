@@ -1,5 +1,5 @@
 <table class="glimmer-world">
-  {{#each @world.citizens key="@index" as |row|}}
+  {{#each @citizens key="@index" as |row|}}
     <tr class="glimmer-world__row">
       {{#each row key="@index" as |citizen|}}
         <glimmer-citizen @citizen={{citizen}} />
