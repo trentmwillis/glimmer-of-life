@@ -1,7 +1,12 @@
-# glimmer-of-life
+# Conway's Glimmer of Life
 
-This README outlines the details of collaborating on this Glimmer application.
-A short introduction of this app could easily go here.
+**Note: This is a work in progress.**
+
+An implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) using [Glimmer](https://glimmerjs.com/). Meant primarily as an exploration of building beautiful and performant visualization with Glimmer.
+
+## Notes from Development
+
+Tracking changes at a "chunky" level produces poor performance characteristics. In particular, treating entire generations (or "worlds" as implemented here) as immutable and replacing them with each "tick" leads to frequent busting of the frame rate.
 
 ## Prerequisites
 
