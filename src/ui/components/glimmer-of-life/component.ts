@@ -13,7 +13,7 @@ export default class GlimmerOfLife extends Component {
 
   nextGeneration() {
     if (!this.running) { return; }
-    requestAnimationFrame(() => this.world = this.world.tick());
+    requestAnimationFrame(() => this.world = this.world.nextGeneration());
   }
 
   toggle() {

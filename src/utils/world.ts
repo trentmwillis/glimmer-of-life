@@ -4,70 +4,97 @@ export default class World {
   citizens: Array<Array<Citizen>>;
   size: number;
 
-  constructor(size: number, citizens?: Array<Array<Citizen>>) {
+  constructor(size: number, previousGeneration?: World) {
     this.size = size;
+    this.populate(previousGeneration);
+  }
 
-    if (citizens) {
-      this.citizens = citizens;
-
-      for (let i = 0; i < this.size; i++) {
-        for (let j = 0; j < this.size; j++) {
-          this.citizens[i][j].addNeighbors(this.findNeighbors(i, j));
-        }
-      }
+  populate(previousGeneration: World) {
+    if (previousGeneration) {
+      this.populateNextGeneration(previousGeneration);
     } else {
-      this.citizens = new Array(size);
+      this.populateNewWorld();
+    }
+  }
 
-      for (let i = 0; i < size; i++) {
-        this.citizens[i] = new Array(size);
+  populateNewWorld() {
+    const size = this.size;
+    const citizens = this.citizens = new Array(size);
 
-        for (let j = 0; j < size; j++) {
-          let alive = Math.random() < 0.2 ? true : false;
-          this.citizens[i][j] = new Citizen(alive);
-        }
-      }
+    for (let i = 0; i < size; i++) {
+      const row = citizens[i] = new Array(size);
 
-      for (let i = 0; i < size; i++) {
-        for (let j = 0; j < size; j++) {
-          this.citizens[i][j].addNeighbors(this.findNeighbors(i, j));
-        }
+      for (let j = 0; j < size; j++) {
+        row[j] = {
+          alive: Math.random() < 0.2 ? true : false
+        };
       }
     }
+  }
 
+  populateNextGeneration(previousGeneration: World) {
+    const size = this.size;
+
+    const citizens = this.citizens = new Array(size);
+
+    for (let i = 0; i < size; i++) {
+      const row = citizens[i] = new Array(size);
+
+      for (let j = 0; j < size; j++) {
+        const previousGenerationCitizen = previousGeneration.citizens[i][j];
+        const neighbors = previousGeneration.findNeighbors(i, j);
+
+        let alive = previousGenerationCitizen.alive;
+
+        let aliveNeighbors = 0;
+        for (let i = 0; i < 8; i++) {
+          if (neighbors[i].alive) {
+            aliveNeighbors++;
+          }
+        }
+
+        if (alive) {
+          if (aliveNeighbors < 2) {
+            alive = false;
+          } else if (aliveNeighbors > 3) {
+            alive = false;
+          }
+        } else if (aliveNeighbors === 3) {
+          alive = true;
+        }
+
+        row[j] = { alive };
+      }
+    }
   }
 
   findNeighbors(i, j): Array<Citizen> {
+    const citizens = this.citizens;
     const max = this.size - 1;
 
-    const left = i - 1 < 0 ? max : i - 1;
-    const right = i + 1 > max ? 0 : i + 1;
+    const upIndex = i - 1 < 0 ? max : i - 1;
+    const downIndex = i + 1 > max ? 0 : i + 1;
 
-    const up = j - 1 < 0 ? max : j - 1;
-    const down = j + 1 > max ? 0 : j + 1;
+    const up = citizens[upIndex];
+    const center = citizens[i];
+    const down = citizens[downIndex];
+
+    const left = j - 1 < 0 ? max : j - 1;
+    const right = j + 1 > max ? 0 : j + 1;
 
     return [
-      this.citizens[left][j],
-      this.citizens[right][j],
-      this.citizens[i][up],
-      this.citizens[i][down],
-      this.citizens[left][up],
-      this.citizens[left][down],
-      this.citizens[right][up],
-      this.citizens[right][down]
+      up[j],
+      up[left],
+      up[right],
+      center[left],
+      center[right],
+      down[j],
+      down[left],
+      down[right]
     ];
   }
 
-  tick(): World {
-    const newCitizens: Array<Array<Citizen>> = new Array(this.size);
-
-    for (let i = 0; i < this.size; i++) {
-      newCitizens[i] = new Array(this.size);
-
-      for (let j = 0; j < this.size; j++) {
-        newCitizens[i][j] = this.citizens[i][j].tick();
-      }
-    }
-
-    return new World(this.size, newCitizens);
+  nextGeneration(): World {
+    return new World(this.size, this);
   }
 }
