@@ -1,8 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  min-width: 101 * (4px + 2px);
   margin: 0;
 }
 
@@ -16,7 +23,7 @@ body {
     font-size: 100%;
     color: white;
     padding: 0.5rem 1rem;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
   }
 }
 
@@ -24,6 +31,7 @@ body {
   color: #444;
   font-family: sans-serif;
   font-size: 100%;
+  margin: 1rem 0;
 }
 
 .title > a {
@@ -37,12 +45,12 @@ body {
 }
 
 .glimmer-world {
-  border-spacing: 1;
+  border-spacing: 2px;
 }
 
 .glimmer-citizen {
-  width: 2px;
-  height: 2px;
+  width: 4px;
+  height: 4px;
 }
 
 .glimmer-citizen.alive {
