@@ -1,9 +1,5 @@
-<table class="glimmer-world">
-  {{#each @citizens key="@index" as |row|}}
-    <tr class="glimmer-world__row">
-      {{#each row key="@index" as |citizen|}}
-        <glimmer-citizen @alive={{citizen.alive}} />
-      {{/each}}
-    </tr>
+<div class="glimmer-world">
+  {{#each @citizens key="@index" as |citizen|}}
+    <glimmer-citizen @alive={{citizen.alive}} />
   {{/each}}
-</table>
+</div>

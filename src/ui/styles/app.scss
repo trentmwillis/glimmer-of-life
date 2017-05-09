@@ -49,8 +49,14 @@ body {
 }
 
 .glimmer-citizen {
+  float: left;
+  margin: 1px;
   width: 4px;
   height: 4px;
+
+  &:nth-child(100n + 1) {
+    clear: both;
+  }
 }
 
 .glimmer-citizen.alive {
